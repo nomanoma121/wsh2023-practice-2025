@@ -5,6 +5,7 @@ import { defineConfig } from 'vite';
 import { ViteEjsPlugin } from 'vite-plugin-ejs';
 import topLevelAwait from 'vite-plugin-top-level-await';
 import wasm from 'vite-plugin-wasm';
+import visualizer from 'rollup-plugin-visualizer';
 
 import { getFileList } from './tools/get_file_list';
 
@@ -24,15 +25,21 @@ export default defineConfig(async () => {
   return {
     build: {
       assetsInlineLimit: 20480,
-      cssCodeSplit: false,
+      cssCodeSplit: true,
       cssTarget: 'es6',
-      minify: false,
+      target: "esnext",
+      minify: "terser",
+      sourcemap: false,
       rollupOptions: {
         output: {
           experimentalMinChunkSize: 40960,
         },
       },
-      target: 'es2015',
+      manualChunks(id) {
+        if (id.includes('node_modules')) {
+          return 'vendor';
+        }
+      },
     },
     plugins: [
       react(),
@@ -43,6 +50,12 @@ export default defineConfig(async () => {
         title: '買えるオーガニック',
         videos,
       }),
+      // visualizer({
+      //   filename: "dist/index.html",
+      //   open: true,
+      //   gzipSize: true,
+      //   brotliSize: true,
+      // }),
     ],
   };
 });

@@ -39,18 +39,18 @@ export default defineConfig(async () => {
     plugins: [
       react(),
       wasm(),
-      // topLevelAwait(),
+      topLevelAwait(),
       ViteEjsPlugin({
         module: '/src/client/index.tsx',
         title: '買えるオーガニック',
         videos,
       }),
-      // visualizer({
-      //   filename: "dist/index.html",
-      //   open: true,
-      //   gzipSize: true,
-      //   brotliSize: true,
-      // }),
+      visualizer({
+        filename: "dist/index.html",
+        open: true,
+        gzipSize: true,
+        brotliSize: true,
+      }),
     ],
   };
 });

@@ -49,7 +49,9 @@ export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
     if (thumbnailFile == null) {
       return;
     }
-    loadImageAsDataURL(thumbnailFile.filename).then((dataUrl) => setImageDataUrl(dataUrl));
+    // jpg -> webp
+    const webpImageDataUrl = thumbnailFile.filename.replace(/\.jpg$/, '.webp');
+    loadImageAsDataURL(webpImageDataUrl).then((dataUrl) => setImageDataUrl(dataUrl));
   }, [thumbnailFile]);
 
   if (imageDataUrl === undefined) {

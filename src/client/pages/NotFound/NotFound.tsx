@@ -1,32 +1,31 @@
 import type { FC } from 'react';
-import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 
 import { Layout } from '../../components/application/Layout';
-import { loadFonts } from '../../utils/load_fonts';
 
 import * as styles from './NotFound.styles';
 
 export const NotFound: FC = () => {
-  const [isReady, setIsReady] = useState(false);
-
-  useEffect(() => {
-    const load = async () => {
-      await loadFonts();
-      setIsReady(true);
-    };
-
-    load();
-  }, []);
-
-  if (!isReady) {
-    return null;
-  }
-
   return (
     <>
       <Helmet>
         <title>ページが見つかりませんでした</title>
+        <style>
+          {`font-face {
+            font-family: 'Noto Serif JP';
+            font-style: normal;
+            font-weight: 700;
+            src: url('/fonts/NotoSerifJP-Bold-subset.woff') format('woff');
+            font-display: block;
+          },
+          font-face {
+            font-family: 'Noto Serif JP';
+            font-style: normal;
+            font-weight: 400;
+            src: url('/fonts/NotoSerifJP-Regular-subset.woff') format('woff');
+            font-display: block;
+            }`}
+        </style>
       </Helmet>
       <Layout>
         <div className={styles.container()}>

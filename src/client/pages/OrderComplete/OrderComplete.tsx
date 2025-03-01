@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import type { FC } from 'react';
-import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,23 +11,14 @@ import { WidthRestriction } from '../../components/foundation/WidthRestriction';
 import { ProductHeroImage } from '../../components/product/ProductHeroImage';
 import { useAuthUser } from '../../hooks/useAuthUser';
 import { useRecommendation } from '../../hooks/useRecommendation';
-import { loadFonts } from '../../utils/load_fonts';
-
 import * as styles from './OrderComplete.styles';
 
 export const OrderComplete: FC = () => {
   const navigate = useNavigate();
-  const [isReadyFont, setIsReadyFont] = useState(false);
   const { authUserLoading, isAuthUser } = useAuthUser();
   const { recommendation } = useRecommendation();
 
-  useEffect(() => {
-    loadFonts().then(() => {
-      setIsReadyFont(true);
-    });
-  }, []);
-
-  if (!recommendation || !isReadyFont || authUserLoading) {
+  if (!recommendation || authUserLoading) {
     return null;
   }
   if (!isAuthUser) {
@@ -40,6 +30,22 @@ export const OrderComplete: FC = () => {
     <>
       <Helmet>
         <title>購入が完了しました</title>
+        <style>
+          {`font-face {
+            font-family: 'Noto Serif JP';
+            font-style: normal;
+            font-weight: 700;
+            src: url('/fonts/NotoSerifJP-Bold-subset.woff') format('woff');
+            font-display: block;
+          },
+          font-face {
+            font-family: 'Noto Serif JP';
+            font-style: normal;
+            font-weight: 400;
+            src: url('/fonts/NotoSerifJP-Regular-subset.woff') format('woff');
+            font-display: block;
+            }`}
+        </style>
       </Helmet>
       <Layout>
         <GetDeviceType>

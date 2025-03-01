@@ -35,16 +35,11 @@ export default defineConfig(async () => {
           experimentalMinChunkSize: 40960,
         },
       },
-      manualChunks(id) {
-        if (id.includes('node_modules')) {
-          return 'vendor';
-        }
-      },
     },
     plugins: [
       react(),
       wasm(),
-      topLevelAwait(),
+      // topLevelAwait(),
       ViteEjsPlugin({
         module: '/src/client/index.tsx',
         title: '買えるオーガニック',

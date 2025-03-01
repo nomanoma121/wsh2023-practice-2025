@@ -1,6 +1,15 @@
 import classNames from 'classnames';
 import type { FC } from 'react';
-import * as Icons from 'react-icons/fa';
+import { FaShoppingCart, FaUser, FaArrowLeft, FaArrowRight, FaPlay, FaCheckCircle } from 'react-icons/fa';
+
+const Icons = {
+  FaShoppingCart,
+  FaUser,
+  FaArrowLeft,
+  FaArrowRight,
+  FaPlay,
+  FaCheckCircle,
+}
 
 import * as styles from './Icon.styles';
 

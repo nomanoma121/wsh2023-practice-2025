@@ -31,14 +31,15 @@ export const OrderComplete: FC = () => {
       <Helmet>
         <title>購入が完了しました</title>
         <style>
-          {`font-face {
+          {`
+          @font-face {
             font-family: 'Noto Serif JP';
             font-style: normal;
             font-weight: 700;
             src: url('/fonts/NotoSerifJP-Bold-subset.woff') format('woff');
             font-display: block;
           },
-          font-face {
+          @font-face {
             font-family: 'Noto Serif JP';
             font-style: normal;
             font-weight: 400;

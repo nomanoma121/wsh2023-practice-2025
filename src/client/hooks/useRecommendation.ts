@@ -1,4 +1,4 @@
-import { useSuspenseQuery_experimental as useSuspenseQuery } from '@apollo/client';
+import { useSuspenseQuery } from '@apollo/client'; // TODO: なんかエラー出てるからなおすかも？
 
 import type { GetRecommendationsQueryResponse } from '../graphql/queries';
 import { GetRecommendationsQuery } from '../graphql/queries';
@@ -6,7 +6,7 @@ import { GetRecommendationsQuery } from '../graphql/queries';
 export const useRecommendation = () => {
   const recommendationsResult = useSuspenseQuery<GetRecommendationsQueryResponse>(GetRecommendationsQuery);
 
-  const hour = window.Temporal.Now.plainTimeISO().hour;
+  const hour = new Date().getHours();
   const recommendations = recommendationsResult?.data?.recommendations;
 
   if (recommendations == null) {

@@ -9,15 +9,17 @@ import { Image } from '../../../foundation/Image';
 import * as styles from './MediaItemPreiewer.styles';
 
 type Props = {
-  file: MediaFileFragmentResponse;
+  file?: MediaFileFragmentResponse;
 };
 
 export const MediaItemPreviewer: FC<Props> = ({ file }) => {
-  const type = getMediaType(file.filename);
+  if (!file) return null;
+
+  const type = getMediaType(file?.filename);
 
   return (
     <div className={styles.container()}>
-      {type === 'image' && <Image fill src={file.filename} />}
+      {type === 'image' && <Image fill decoding="sync" loading="eager" src={file.filename} />}
       {type === 'video' && (
         <GetDeviceType>
           {({ deviceType }) => (

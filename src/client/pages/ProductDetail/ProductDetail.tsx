@@ -24,13 +24,13 @@ export const ProductDetail: FC = () => {
   const { productId } = useParams();
 
   const { product } = useProduct(Number(productId));
-  const { reviews } = useReviews(product?.id);
+  const { reviews } = useReviews(Number(product?.id));
   const { isAuthUser } = useAuthUser();
   const { sendReview } = useSendReview();
   const { updateCartItem } = useUpdateCartItem();
   const handleOpenModal = useOpenModal();
   const { amountInCart } = useAmountInCart(Number(productId));
-  const { activeOffer } = useActiveOffer(product?.offers ?? []);
+  const { activeOffer } = useActiveOffer(product);
 
   const handleSubmitReview = ({ comment }: { comment: string }) => {
     sendReview({
